@@ -108,6 +108,7 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
+
 struct WheelControl: View {
     
     var up: String
@@ -116,23 +117,37 @@ struct WheelControl: View {
 
     var body: some View {
         VStack (spacing: 10) {
-            Image(systemName: up)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
             
-            Image(systemName: middle)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
+            Button {
+                print("action done")
+            } label: {
+                Image(systemName: up)
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+            }
             
-            Image(systemName: down)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
+            Button {
+                print("action done")
+            } label: {
+                Image(systemName: middle)
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+            }
+            
+            Button {
+                print("action done")
+            } label: {
+                Image(systemName: down)
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+            }
+        
             
             
             Spacer()
