@@ -53,27 +53,40 @@ struct ContentView: View {
                     RobotControl(arrowOne: "arrowtriangle.left")
                     
                     VStack {
-                        Image(systemName: "arrowtriangle.up")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100)
                         
-                        Image(systemName: "circle.fill")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100)
+                        Button {
+                            print("action done")
+                        } label: {
+                            Image(systemName: "arrowtriangle.up")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                            
+                        }
+                        
+                        Button {
+                            print("action done")
+                        } label: {
+                            Image(systemName: "circle.fill")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        }
                         
                         
-                        Image(systemName: "arrowtriangle.down")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100)
-                        
-                        
-                        
+                        Button {
+                            print("action done")
+                        } label: {
+                            Image(systemName: "arrowtriangle.down")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                            
+                        }
+    
                         Spacer()
                         
                     }
@@ -102,10 +115,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-
-
-
 
 
 
@@ -163,12 +172,16 @@ struct MiddleButtons: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "circle")
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-            
+            Button {
+                print("action done")
+            } label: {
+                Image(systemName: "circle")
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+            }
+
             Spacer()
             
         }
@@ -186,13 +199,18 @@ struct RobotControl: View {
     
     var body: some View {
         VStack {
-            Image(systemName: arrowOne)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
+            
+            Button {
+                print("action done")
+            } label: {
+                Image(systemName: arrowOne)
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
 
-    
+            }
+
         }
     }
 }
