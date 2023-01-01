@@ -131,10 +131,12 @@ struct WheelControl: View {
                 print("action done")
             } label: {
                 Image(systemName: up)
-                    .renderingMode(.original)
+                    .renderingMode(.template)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
+                    .foregroundColor(.black)
+
             }
             
             Button {
