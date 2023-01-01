@@ -46,7 +46,7 @@ struct ContentView: View {
                     
                 }
                 
-                
+                Spacer(minLength: 4)
                 // Third HStack
                 HStack (spacing: 20) {
 
@@ -62,6 +62,8 @@ struct ContentView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
+                                .foregroundColor(.white)
+
                             
                         }
                         
@@ -73,6 +75,8 @@ struct ContentView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
+                                .foregroundColor(.white)
+
                         }
                         
                         
@@ -84,6 +88,8 @@ struct ContentView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
+                                .foregroundColor(.white)
+
                             
                         }
     
@@ -135,7 +141,7 @@ struct WheelControl: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
 
             }
             
@@ -147,6 +153,8 @@ struct WheelControl: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
+                    .foregroundColor(.white)
+
             }
             
             Button {
@@ -157,6 +165,8 @@ struct WheelControl: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
+                    .foregroundColor(.white)
+
             }
         
             
@@ -182,6 +192,8 @@ struct MiddleButtons: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
+                    .foregroundColor(.white)
+
             }
 
             Spacer()
@@ -210,6 +222,8 @@ struct RobotControl: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
+                    .foregroundColor(.white)
+
 
             }
 
