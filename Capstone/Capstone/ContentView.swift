@@ -49,7 +49,7 @@ struct ContentView: View {
                 Spacer(minLength: 4)
                 // Third HStack
                 HStack (spacing: 20) {
-
+                    
                     RobotControl(arrowOne: "arrowtriangle.left")
                     
                     VStack {
@@ -63,7 +63,7 @@ struct ContentView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
                                 .foregroundColor(.white)
-
+                            
                             
                         }
                         
@@ -76,7 +76,7 @@ struct ContentView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
                                 .foregroundColor(.white)
-
+                            
                         }
                         
                         
@@ -89,15 +89,15 @@ struct ContentView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
                                 .foregroundColor(.white)
-
+                            
                             
                         }
-    
+                        
                         Spacer()
                         
                     }
                     
-                  RobotControl(arrowOne: "arrowtriangle.right")
+                    RobotControl(arrowOne: "arrowtriangle.right")
                 }
                 
                 
