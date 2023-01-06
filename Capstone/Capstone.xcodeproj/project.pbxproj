@@ -14,6 +14,7 @@
 		843AA8DA295388FA0081FEF4 /* CapstoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8D9295388FA0081FEF4 /* CapstoneTests.swift */; };
 		843AA8E4295388FA0081FEF4 /* CapstoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8E3295388FA0081FEF4 /* CapstoneUITests.swift */; };
 		843AA8E6295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8E5295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift */; };
+		8486C6602968C75F00C98B4C /* BluetoothCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486C65F2968C75F00C98B4C /* BluetoothCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		843AA8DF295388FA0081FEF4 /* CapstoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		843AA8E3295388FA0081FEF4 /* CapstoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITests.swift; sourceTree = "<group>"; };
 		843AA8E5295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8486C65F2968C75F00C98B4C /* BluetoothCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +96,9 @@
 		843AA8C7295388FA0081FEF4 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
-				843AA8C8295388FA0081FEF4 /* CapstoneApp.swift */,
-				843AA8CA295388FA0081FEF4 /* ContentView.swift */,
-				843AA8CC295388FA0081FEF4 /* Assets.xcassets */,
+				8486C65E2968C73500C98B4C /* Resources */,
+				8486C65D2968C72000C98B4C /* Main */,
+				8486C65C2968C71700C98B4C /* Bluetooth */,
 				843AA8CE295388FA0081FEF4 /* Preview Content */,
 			);
 			path = Capstone;
@@ -125,6 +127,31 @@
 				843AA8E5295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift */,
 			);
 			path = CapstoneUITests;
+			sourceTree = "<group>";
+		};
+		8486C65C2968C71700C98B4C /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				8486C65F2968C75F00C98B4C /* BluetoothCore.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		8486C65D2968C72000C98B4C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				843AA8CA295388FA0081FEF4 /* ContentView.swift */,
+				843AA8C8295388FA0081FEF4 /* CapstoneApp.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		8486C65E2968C73500C98B4C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				843AA8CC295388FA0081FEF4 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843AA8CB295388FA0081FEF4 /* ContentView.swift in Sources */,
+				8486C6602968C75F00C98B4C /* BluetoothCore.swift in Sources */,
 				843AA8C9295388FA0081FEF4 /* CapstoneApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
