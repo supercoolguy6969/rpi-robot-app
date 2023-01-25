@@ -9,122 +9,41 @@ import SwiftUI
 import CocoaMQTT
 
 var stop = "stop"
-var direction: [Int: String] = [0: "forward",
-                                1: "backward",
-                                2: "left",
-                                3: "right" ]
+var forward = "forward"
+var backward = "backward"
+var left = "left"
+var right = "right"
 
-let mqttClient = CocoaMQTT(clientID: "RobotApp", host: "IPAddressHere", port: 1883)
+
+
+let mqttClient = CocoaMQTT(clientID: "Robot", host: "192.168.0.55", port: 1883)
 
 struct ContentView: View {
     var body: some View {
         ZStack {
-            
             VStack{
-                
-                // First HStack
                 HStack {
-                    
-                    WheelControl(up: "arrow.up.left.square",
-                                 middle: "arrow.left.square",
-                                 down: "arrow.down.left.square")
-                    
-                    
-                    WheelControl(up: "arrow.up.square",
-                                 middle: "circle",
-                                 down: "arrow.down.square")
-                    
-                    WheelControl(up: "arrow.up.right.square",
-                                 middle: "arrow.right.square",
-                                 down: "arrow.down.right.square")
-                    
-                }
-                
-                
-                Spacer(minLength: 4)
-                
-                
-                
-                
-                // Second HStack
-                HStack (spacing: 10) {
-                    
-                    
-                    MiddleButtons()
-                    MiddleButtons()
-                    MiddleButtons()
-                    
-                }
-                
-                Spacer(minLength: 4)
-                
-                
-                // Third HStack
-                HStack (spacing: 20) {
-                    
-                    RobotControl(arrowOne: "arrowtriangle.left")
-                    
                     VStack {
-                        
-                        Button {
-                            print("action done")
-                        } label: {
-                            Image(systemName: "arrowtriangle.up")
-                                .renderingMode(.original)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
-                                .foregroundColor(.white)
-                            
-                            
-                        }
-                        
-                        Button {
-                            print("action done")
-                        } label: {
-                            Image(systemName: "circle.fill")
-                                .renderingMode(.original)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
-                                .foregroundColor(.white)
-                            
-                        }
-                        
-                        
-                        Button {
-                            print("action done")
-                        } label: {
-                            Image(systemName: "arrowtriangle.down")
-                                .renderingMode(.original)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
-                                .foregroundColor(.white)
-                            
-                            
-                        }
-                        
-                        Spacer()
-                        
+                        BackwardLeft()
+                        Backward()
+                        BackwardRight()
                     }
-                    
-                    RobotControl(arrowOne: "arrowtriangle.right")
+                    VStack{
+                        Left()
+                        ConnectToRobot()
+                        Right()
+                    }
+                    VStack {
+                        ForwardLeft()
+                        Forward()
+                        ForwardRight()
+                    }
+
                 }
-                
-                
-                
             }
-            
-            
-            
         }
     }
 }
-
-
-
-
 
 
 
@@ -136,54 +55,114 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
-struct WheelControl: View {
-    
-    var up: String
-    var middle: String
-    var down: String
-
+//First VStack
+//Back left
+struct BackwardLeft: View {
     var body: some View {
-        VStack (spacing: 10) {
+        Button {
+            print("Move back left")
+        } label:  {
+            Image(systemName: "arrow.up.left.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
             
-            Button {
-                print("action done")
-            } label: {
-                Image(systemName: up)
-                    .renderingMode(.template)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.white)
+        }
+    }
+}
 
-            }
+//Backward
+struct Backward: View {
+    var body: some View {
+        Button {
+            mqttClient.publish("robot/move", withString: backward)
+            print("Move back")
+        } label:  {
+            Image(systemName: "arrow.left.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
             
-            Button {
-                print("action done")
-            } label: {
-                Image(systemName: middle)
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.white)
+        }
+    }
+}
 
-            }
+
+//Back Right
+struct BackwardRight: View {
+    var body: some View {
+        Button {
+            print("Back right")
             
-            Button {
-                print("action done")
-            } label: {
-                Image(systemName: down)
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.white)
-                
-            }
-        
+        } label:  {
+            Image(systemName: "arrow.down.left.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
             
+        }
+    }
+}
+
+
+//Second VStack
+//Left
+struct Left: View {
+    var body: some View {
+        Button {
+            mqttClient.publish("robot/move", withString: left)
+            print("Move left")
+        } label:  {
+            Image(systemName: "arrow.up.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
             
-            Spacer()
+        }
+    }
+}
+
+//MQTT Connection
+struct ConnectToRobot: View {
+    var body: some View {
+        Button {
+            mqttClient.connect()
+            print("Connect to robot")
+            
+        } label:  {
+            Image(systemName: "circle")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
+            
+        }
+    }
+}
+
+//Right
+struct Right: View {
+    var body: some View {
+        Button {
+            mqttClient.publish("robot/move", withString: right)
+            print("Move right")
+        } label:  {
+            Image(systemName: "arrow.down.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
+            
         }
     }
 }
@@ -191,56 +170,58 @@ struct WheelControl: View {
 
 
 
-struct MiddleButtons: View {
-    
-    
+//Third VStack
+//Forward left
+struct ForwardLeft: View {
     var body: some View {
-        VStack {
-            Button {
-                print("action done")
-            } label: {
-                Image(systemName: "circle")
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.white)
-
-            }
-
-            Spacer()
+        Button {
+            print("Move foward left")
+        } label:  {
+            Image(systemName: "arrow.up.right.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
             
         }
     }
 }
 
-
-
-
-
-
-struct RobotControl: View {
-    
-    var arrowOne: String
-    
+//Forward
+struct Forward: View {
     var body: some View {
-        VStack {
+        Button {
+            mqttClient.publish("robot/move", withString: forward)
+            print("Move forward")
+        } label:  {
+            Image(systemName: "arrow.right.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
             
-            Button {
-                print("action done")
-            } label: {
-                Image(systemName: arrowOne)
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.white)
-
-
-            }
-
         }
     }
 }
+
+//Forward right
+struct ForwardRight: View {
+    var body: some View {
+        Button {
+            print("Move top right")
+        } label:  {
+            Image(systemName: "arrow.down.right.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
+            
+        }
+    }
+}
+
 
 
