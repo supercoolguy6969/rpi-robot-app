@@ -6,6 +6,15 @@
 //
 
 import SwiftUI
+import CocoaMQTT
+
+var stop = "stop"
+var direction: [Int: String] = [0: "forward",
+                                1: "backward",
+                                2: "left",
+                                3: "right" ]
+
+let mqttClient = CocoaMQTT(clientID: "RobotApp", host: "IPAddressHere", port: 1883)
 
 struct ContentView: View {
     var body: some View {
@@ -19,6 +28,7 @@ struct ContentView: View {
                     WheelControl(up: "arrow.up.left.square",
                                  middle: "arrow.left.square",
                                  down: "arrow.down.left.square")
+                    
                     
                     WheelControl(up: "arrow.up.square",
                                  middle: "circle",
@@ -47,6 +57,8 @@ struct ContentView: View {
                 }
                 
                 Spacer(minLength: 4)
+                
+                
                 // Third HStack
                 HStack (spacing: 20) {
                     
@@ -166,7 +178,7 @@ struct WheelControl: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
                     .foregroundColor(.white)
-
+                
             }
         
             
