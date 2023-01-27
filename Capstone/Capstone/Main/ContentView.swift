@@ -54,7 +54,6 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-
 //First VStack
 //Back left
 struct BackwardLeft: View {
@@ -72,6 +71,7 @@ struct BackwardLeft: View {
         }
     }
 }
+
 
 //Backward
 struct Backward: View {
