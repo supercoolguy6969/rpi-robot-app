@@ -8,15 +8,10 @@
 import SwiftUI
 import CocoaMQTT
 
-var stop = "stop"
-var forward = "forward"
-var backward = "backward"
-var left = "left"
-var right = "right"
 
 
+let mqttClient = CocoaMQTT(clientID: "Robot", host: "raspberrypi.local", port: 1883)
 
-let mqttClient = CocoaMQTT(clientID: "Robot", host: "192.168.0.55", port: 1883)
 
 struct ContentView: View {
     var body: some View {
@@ -76,10 +71,10 @@ struct BackwardLeft: View {
 //Backward
 struct Backward: View {
     var body: some View {
-        Button {
-            mqttClient.publish("robot/move", withString: backward)
+        Button (action: {
+            mqttClient.publish("robot/move", withString: "backward")
             print("Move back")
-        } label:  {
+        }, label:  {
             Image(systemName: "arrow.left.square")
                 .renderingMode(.template)
                 .resizable()
@@ -87,7 +82,7 @@ struct Backward: View {
                 .frame(width: 100, height: 100)
                 .foregroundColor(.white)
             
-        }
+        })
     }
 }
 
@@ -116,7 +111,7 @@ struct BackwardRight: View {
 struct Left: View {
     var body: some View {
         Button {
-            mqttClient.publish("robot/move", withString: left)
+            mqttClient.publish("robot/move", withString: "left")
             print("Move left")
         } label:  {
             Image(systemName: "arrow.up.square")
@@ -134,8 +129,8 @@ struct Left: View {
 struct ConnectToRobot: View {
     var body: some View {
         Button {
-            mqttClient.connect()
             print("Connect to robot")
+            mqttClient.connect()
             
         } label:  {
             Image(systemName: "circle")
@@ -153,8 +148,8 @@ struct ConnectToRobot: View {
 struct Right: View {
     var body: some View {
         Button {
-            mqttClient.publish("robot/move", withString: right)
             print("Move right")
+            mqttClient.publish("robot/move", withString: "right")
         } label:  {
             Image(systemName: "arrow.down.square")
                 .renderingMode(.template)
@@ -192,7 +187,7 @@ struct ForwardLeft: View {
 struct Forward: View {
     var body: some View {
         Button {
-            mqttClient.publish("robot/move", withString: forward)
+            mqttClient.publish("robot/move", withString: "forward")
             print("Move forward")
         } label:  {
             Image(systemName: "arrow.right.square")
