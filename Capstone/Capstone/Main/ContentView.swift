@@ -10,8 +10,13 @@ import CocoaMQTT
 
 
 
-let mqttClient = CocoaMQTT(clientID: "Robot", host: "raspberrypi.local", port: 1883)
+struct direction {
+    static var left = "l"
+}
 
+
+
+let mqttClient = CocoaMQTT(clientID: "Robot", host: "raspberrypi.local", port: 1883)
 
 
 struct ContentView: View {
@@ -111,10 +116,14 @@ struct BackwardRight: View {
 //Second VStack
 //Left
 struct Left: View {
+    
+    var left = "l"
+    
     var body: some View {
         Button {
+            
             mqttClient.allowUntrustCACertificate = true
-            mqttClient.publish("robot/move", withString: "l")
+            mqttClient.publish("robot/move", withString: left)
             print("Move left")
         } label:  {
             Image(systemName: "arrow.up.square")
