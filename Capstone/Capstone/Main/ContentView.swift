@@ -16,13 +16,15 @@ struct direction {
 
 
 
-let mqttClient = CocoaMQTT(clientID: "Robot", host: "raspberrypi.local", port: 1883)
+let mqttClient = CocoaMQTT(clientID: "App", host: "raspberrypi.local", port: 1883)
 
 
 struct ContentView: View {
     var body: some View {
         ZStack {
+            
             VStack{
+                
                 HStack {
                     VStack {
                         BackwardLeft()
@@ -30,21 +32,69 @@ struct ContentView: View {
                         BackwardRight()
                     }
                     VStack{
-                        Left()
+                        ButtonPress()
                         ConnectToRobot()
-                        Right()
+                        Random()
                     }
                     VStack {
                         ForwardLeft()
                         Forward()
                         ForwardRight()
+                        
+                        
                     }
 
                 }
+                Spacer()
             }
+            
+            HStack {
+                Clockwise()
+                CClockwise()
+                Stop()
+                
+                
+                
+            }
+            
+
+            
+    
+            
         }
+        
+        
     }
 }
+
+
+struct ButtonPress: View {
+    @State private var isDragging = false
+    
+    var body: some View {
+        let g = DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onChanged({ _ in
+                
+                mqttClient.publish("robot/move", withString: "left")
+                print("Move left")
+            })
+            .onEnded({ _ in
+                
+                mqttClient.publish("robot/move", withString: "stop")
+                print("Stopped")
+            })
+
+        return
+            Image(systemName: "arrow.up.square")
+            .renderingMode(.template)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 100, height: 100)
+            .foregroundColor(.white)
+            .gesture(g)
+    }
+}
+
 
 
 
@@ -55,12 +105,45 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
+
+struct Random: View {
+    var body: some View {
+        Button {
+                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                .onChanged({ _ in
+                    
+                    mqttClient.publish("robot/move", withString: "left")
+                    print("Move left")
+                })
+                .onEnded({ _ in
+                    
+                    mqttClient.publish("robot/move", withString: "stop")
+                    print("Stopped")
+                })
+
+        } label:  {
+            Image(systemName: "arrow.up.left.square")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
+            
+        }
+    }
+}
+
+
+
+
 //First VStack
 //Back left
 struct BackwardLeft: View {
     var body: some View {
         Button {
+            
             print("Move back left")
+            mqttClient.publish("robot/move", withString: "backwardleft")
         } label:  {
             Image(systemName: "arrow.up.left.square")
                 .renderingMode(.template)
@@ -79,7 +162,8 @@ struct Backward: View {
     var body: some View {
         Button (action: {
         
-            mqttClient.publish("robot/move", withString: "b")
+            mqttClient.publish("robot/move", withString: "backward")
+       
             print("Move back")
         }, label:  {
             Image(systemName: "arrow.left.square")
@@ -99,7 +183,7 @@ struct BackwardRight: View {
     var body: some View {
         Button {
             print("Back right")
-            
+            mqttClient.publish("robot/move", withString: "backwardright")
         } label:  {
             Image(systemName: "arrow.down.left.square")
                 .renderingMode(.template)
@@ -113,17 +197,20 @@ struct BackwardRight: View {
 }
 
 
+
+
+
 //Second VStack
 //Left
 struct Left: View {
     
-    var left = "l"
+
     
     var body: some View {
         Button {
             
             mqttClient.allowUntrustCACertificate = true
-            mqttClient.publish("robot/move", withString: left)
+            mqttClient.publish("robot/move", withString: "left")
             print("Move left")
         } label:  {
             Image(systemName: "arrow.up.square")
@@ -161,7 +248,7 @@ struct Right: View {
     var body: some View {
         Button {
             print("Move right")
-            mqttClient.publish("robot/move", withString: "r")
+            mqttClient.publish("robot/move", withString: "right")
         } label:  {
             Image(systemName: "arrow.down.square")
                 .renderingMode(.template)
@@ -182,6 +269,7 @@ struct Right: View {
 struct ForwardLeft: View {
     var body: some View {
         Button {
+            mqttClient.publish("robot/move", withString: "forwardleft")
             print("Move foward left")
         } label:  {
             Image(systemName: "arrow.up.right.square")
@@ -199,7 +287,7 @@ struct ForwardLeft: View {
 struct Forward: View {
     var body: some View {
         Button {
-            mqttClient.publish("robot/move", withString: "f")
+            mqttClient.publish("robot/move", withString: "forward")
             print("Move forward")
         } label:  {
             Image(systemName: "arrow.right.square")
@@ -217,6 +305,7 @@ struct Forward: View {
 struct ForwardRight: View {
     var body: some View {
         Button {
+            mqttClient.publish("robot/move", withString: "forwardright")
             print("Move top right")
         } label:  {
             Image(systemName: "arrow.down.right.square")
@@ -232,3 +321,58 @@ struct ForwardRight: View {
 
 
 
+// Clockwise
+struct Clockwise: View {
+    var body: some View {
+        Button {
+            print("Clockwise")
+            mqttClient.publish("robot/move", withString: "clockwise")
+        } label:  {
+            Image(systemName: "circle")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
+            Text("cw")
+        }
+    }
+}
+
+
+//CClockwise
+struct CClockwise: View {
+    var body: some View {
+        Button {
+            print("CounterClockwise")
+            mqttClient.publish("robot/move", withString: "ccw")
+        } label:  {
+            Image(systemName: "circle")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
+            Text("ccw")
+        }
+    }
+}
+
+//Stop
+struct Stop: View {
+    var body: some View {
+        Button {
+            print("CounterClockwise")
+            mqttClient.publish("robot/move", withString: "ccw")
+        } label:  {
+            Image(systemName: "circle")
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+                .foregroundColor(.white)
+            Text("stop")
+            
+        }
+    }
+}
