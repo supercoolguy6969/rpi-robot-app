@@ -11,12 +11,14 @@
 		5CA45A195C6832D9B7018CD0 /* Pods_Capstone_CapstoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29841BFE51E87FD3F6A20846 /* Pods_Capstone_CapstoneUITests.framework */; };
 		70CE33F0ECD15A9A617A0B30 /* Pods_CapstoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37052E9096173F6D0FFA5079 /* Pods_CapstoneTests.framework */; };
 		843AA8C9295388FA0081FEF4 /* CapstoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8C8295388FA0081FEF4 /* CapstoneApp.swift */; };
-		843AA8CB295388FA0081FEF4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8CA295388FA0081FEF4 /* ContentView.swift */; };
+		843AA8CB295388FA0081FEF4 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8CA295388FA0081FEF4 /* Main.swift */; };
 		843AA8CD295388FA0081FEF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843AA8CC295388FA0081FEF4 /* Assets.xcassets */; };
 		843AA8D0295388FA0081FEF4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843AA8CF295388FA0081FEF4 /* Preview Assets.xcassets */; };
 		843AA8DA295388FA0081FEF4 /* CapstoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8D9295388FA0081FEF4 /* CapstoneTests.swift */; };
 		843AA8E4295388FA0081FEF4 /* CapstoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8E3295388FA0081FEF4 /* CapstoneUITests.swift */; };
 		843AA8E6295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8E5295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift */; };
+		849F385729A92D8100180949 /* RobotWheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F385629A92D8100180949 /* RobotWheelViewController.swift */; };
+		849F385929A92E6200180949 /* RobotArmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F385829A92E6200180949 /* RobotArmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +46,7 @@
 		6FF0FCEF9F19C8452ED89F71 /* Pods_Capstone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capstone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		843AA8C5295388FA0081FEF4 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843AA8C8295388FA0081FEF4 /* CapstoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneApp.swift; sourceTree = "<group>"; };
-		843AA8CA295388FA0081FEF4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		843AA8CA295388FA0081FEF4 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		843AA8CC295388FA0081FEF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843AA8CF295388FA0081FEF4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		843AA8D5295388FA0081FEF4 /* CapstoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,8 @@
 		843AA8DF295388FA0081FEF4 /* CapstoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		843AA8E3295388FA0081FEF4 /* CapstoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITests.swift; sourceTree = "<group>"; };
 		843AA8E5295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		849F385629A92D8100180949 /* RobotWheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotWheelViewController.swift; sourceTree = "<group>"; };
+		849F385829A92E6200180949 /* RobotArmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotArmViewController.swift; sourceTree = "<group>"; };
 		8A100B3E73CB00DCD5A4999F /* Pods-Capstone-CapstoneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone-CapstoneUITests.release.xcconfig"; path = "Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8CDC1BF2866900943C06D4F1 /* Pods-Capstone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone.release.xcconfig"; path = "Target Support Files/Pods-Capstone/Pods-Capstone.release.xcconfig"; sourceTree = "<group>"; };
 		AF4AFF396BD462FBECE427A8 /* Pods-CapstoneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapstoneTests.release.xcconfig"; path = "Target Support Files/Pods-CapstoneTests/Pods-CapstoneTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,8 +168,10 @@
 		8486C65D2968C72000C98B4C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				843AA8CA295388FA0081FEF4 /* ContentView.swift */,
 				843AA8C8295388FA0081FEF4 /* CapstoneApp.swift */,
+				843AA8CA295388FA0081FEF4 /* Main.swift */,
+				849F385629A92D8100180949 /* RobotWheelViewController.swift */,
+				849F385829A92E6200180949 /* RobotArmViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -429,8 +435,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				843AA8CB295388FA0081FEF4 /* ContentView.swift in Sources */,
+				849F385929A92E6200180949 /* RobotArmViewController.swift in Sources */,
+				843AA8CB295388FA0081FEF4 /* Main.swift in Sources */,
 				843AA8C9295388FA0081FEF4 /* CapstoneApp.swift in Sources */,
+				849F385729A92D8100180949 /* RobotWheelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
