@@ -34,7 +34,7 @@ struct Main: View {
                     VStack{
                         RobotWheelViewController(image: "arrow.up.square",
                                                  mqttMessage: "left")
-                        ConnectToRobot()
+                        Function(image: "circle", mqttMessage: "honk", text: "honk")
                         RobotWheelViewController(image: "arrow.down.square",
                                                  mqttMessage: "right")
                     }
@@ -48,39 +48,19 @@ struct Main: View {
                     }
                 }
                 Spacer()
+                HStack {
+                    Function(image: "circle", mqttMessage: "CW", text: "Clockwise")
+                    ConnectToRobot(text: "connect")
+                    Function(image: "circle", mqttMessage: "CCW", text: "CounterCC")
+                }
+                .offset(y: -400)
+                
+                
             }
+           
         }
     }
 }
-
-
-struct ButtonPress: View {
-    @State private var isDragging = false
-    
-    var body: some View {
-        let g = DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onChanged({ _ in
-                
-                mqttClient.publish("robot/move", withString: "left")
-                print("Move left")
-            })
-            .onEnded({ _ in
-                
-                mqttClient.publish("robot/move", withString: "stop")
-                print("Stopped")
-            })
-        
-        return
-            Image(systemName: "arrow.up.square")
-            .renderingMode(.template)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 100, height: 100)
-            .foregroundColor(.white)
-            .gesture(g)
-    }
-}
-
 
 
 
@@ -93,22 +73,8 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
-//MQTT Connection
-struct ConnectToRobot: View {
-    var body: some View {
-        Button {
-            print("Connect to robot")
-            mqttClient.connect()
-            
-        } label:  {
-            Image(systemName: "circle")
-                .renderingMode(.template)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-                .foregroundColor(.white)
-            
-        }
-    }
-}
+
+
+
+
 
