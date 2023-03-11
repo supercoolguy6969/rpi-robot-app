@@ -8,15 +8,7 @@
 import SwiftUI
 import CocoaMQTT
 
-
-
-struct direction {
-    static var left = "l"
-}
-
-
 let mqttClient = CocoaMQTT(clientID: "App", host: "raspberrypi.local", port: 1883)
-
 
 struct Main: View {
     var body: some View {
@@ -49,20 +41,28 @@ struct Main: View {
                 }
                 Spacer()
                 HStack {
-                    Function(image: "circle", mqttMessage: "CW", text: "Clockwise")
+                    Function(image: "circle", mqttMessage: "CW", text: "CWise")
                     ConnectToRobot(text: "connect")
-                    Function(image: "circle", mqttMessage: "CCW", text: "CounterCC")
+                    Function(image: "circle", mqttMessage: "CCW", text: "CCW")
+                    
                 }
-                .offset(y: -400)
                 
                 
+                HStack {
+                    RobotArmController(image: "arrowtriangle.left",
+                                       mqttMessage: "rightLeft")
+                    VStack {
+                        RobotArmController(image: "arrowtriangle.up", mqttMessage: "rightUp")
+                        Function(image: "circle", mqttMessage: "CW", text: "Squeeze")
+                        RobotArmController(image: "arrowtriangle.down", mqttMessage: "rightDown")
+                    }
+                    RobotArmController(image: "arrowtriangle.right", mqttMessage: "right")
+                }
+                Spacer()
             }
-           
         }
     }
 }
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

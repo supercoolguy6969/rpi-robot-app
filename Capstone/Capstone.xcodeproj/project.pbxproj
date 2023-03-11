@@ -17,6 +17,7 @@
 		843AA8DA295388FA0081FEF4 /* CapstoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8D9295388FA0081FEF4 /* CapstoneTests.swift */; };
 		843AA8E4295388FA0081FEF4 /* CapstoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8E3295388FA0081FEF4 /* CapstoneUITests.swift */; };
 		843AA8E6295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA8E5295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift */; };
+		84762DF229BBB5E700261403 /* ArmControllerPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84762DF129BBB5E700261403 /* ArmControllerPageView.swift */; };
 		849F385729A92D8100180949 /* RobotWheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F385629A92D8100180949 /* RobotWheelViewController.swift */; };
 		849F385929A92E6200180949 /* RobotArmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F385829A92E6200180949 /* RobotArmViewController.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		843AA8DF295388FA0081FEF4 /* CapstoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		843AA8E3295388FA0081FEF4 /* CapstoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITests.swift; sourceTree = "<group>"; };
 		843AA8E5295388FA0081FEF4 /* CapstoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapstoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		84762DF129BBB5E700261403 /* ArmControllerPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmControllerPageView.swift; sourceTree = "<group>"; };
 		849F385629A92D8100180949 /* RobotWheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotWheelViewController.swift; sourceTree = "<group>"; };
 		849F385829A92E6200180949 /* RobotArmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotArmViewController.swift; sourceTree = "<group>"; };
 		8A100B3E73CB00DCD5A4999F /* Pods-Capstone-CapstoneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone-CapstoneUITests.release.xcconfig"; path = "Target Support Files/Pods-Capstone-CapstoneUITests/Pods-Capstone-CapstoneUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,9 +127,9 @@
 		843AA8C7295388FA0081FEF4 /* Capstone */ = {
 			isa = PBXGroup;
 			children = (
-				8476187829809D1D00391741 /* MQTT */,
+				8486C65D2968C72000C98B4C /* Views */,
+				84762DF329BBB60000261403 /* ViewControllers */,
 				8486C65E2968C73500C98B4C /* Resources */,
-				8486C65D2968C72000C98B4C /* Main */,
 				843AA8CE295388FA0081FEF4 /* Preview Content */,
 			);
 			path = Capstone;
@@ -158,22 +160,23 @@
 			path = CapstoneUITests;
 			sourceTree = "<group>";
 		};
-		8476187829809D1D00391741 /* MQTT */ = {
+		84762DF329BBB60000261403 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				849F385829A92E6200180949 /* RobotArmViewController.swift */,
+				849F385629A92D8100180949 /* RobotWheelViewController.swift */,
 			);
-			path = MQTT;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		8486C65D2968C72000C98B4C /* Main */ = {
+		8486C65D2968C72000C98B4C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				843AA8C8295388FA0081FEF4 /* CapstoneApp.swift */,
 				843AA8CA295388FA0081FEF4 /* Main.swift */,
-				849F385629A92D8100180949 /* RobotWheelViewController.swift */,
-				849F385829A92E6200180949 /* RobotArmViewController.swift */,
+				84762DF129BBB5E700261403 /* ArmControllerPageView.swift */,
 			);
-			path = Main;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8486C65E2968C73500C98B4C /* Resources */ = {
@@ -439,6 +442,7 @@
 				843AA8CB295388FA0081FEF4 /* Main.swift in Sources */,
 				843AA8C9295388FA0081FEF4 /* CapstoneApp.swift in Sources */,
 				849F385729A92D8100180949 /* RobotWheelViewController.swift in Sources */,
+				84762DF229BBB5E700261403 /* ArmControllerPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
