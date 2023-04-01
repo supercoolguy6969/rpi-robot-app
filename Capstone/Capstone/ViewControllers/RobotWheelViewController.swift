@@ -15,7 +15,8 @@ struct RobotWheelViewController: View {
     
     
     var body: some View {
-        let g = DragGesture(minimumDistance: -5, coordinateSpace: .local)
+        
+        let g = DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged({ _ in
                 self.isDragging = true
                 mqttClient.publish("robot/move", withString: mqttMessage)
@@ -76,11 +77,9 @@ struct Function: View {
 
 
 struct TextOverlay:View {
-    
     let message: String
     
     var body: some View {
-        
         Text(message)
             .rotationEffect(Angle(degrees: 90))
             .bold()
@@ -89,67 +88,48 @@ struct TextOverlay:View {
 }
 
 
-
-
-//MQTT Connection
 struct ConnectToRobot: View {
     
     let text: String
+    let image: String
+    
     @State private var isTapped = false
     
     
     var body: some View {
-        Button {
-            print("Connect to robot")
-            mqttClient.connect()
-            
-        } label:  {
-            Image(systemName: "circle")
-                .renderingMode(.template)
-                .resizable()
-                .onTapGesture {
-                    self.isTapped = true
-                }
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-                .foregroundColor(self.isTapped ? .blue : .white)
-                .overlay(TextOverlay(message: text))
-                
-            
-            
-        }
-    }
-}
-
-/*
-struct RobotWheelViewController: View {
-    @GestureState var isLongPress = false
-    
-    let image: String
-    let mqttMessage: String
-    
-    
-    var body: some View {
-        let longPress = LongPressGesture()
-            .updating($isLongPress) { newValue, state, transaction in
-                state = newValue
-                mqttClient.publish("robot/move", withString: mqttMessage)
-                print("Move \(mqttMessage)")
-            }
-            .onEnded{ _ in
-                mqttClient.publish("robot/move", withString: "stop")
+        let tap = TapGesture(count: 1)
+            .onEnded({ _ in
+                self.isTapped = !self.isTapped
+                mqttClient.connect()
                 print("Stopped")
-            }
+            })
 
+        
         return
             Image(systemName: image)
             .renderingMode(.template)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 100, height: 100)
-            .foregroundColor(self.isLongPress ? .blue: .white)
-            .gesture(longPress)
+            .foregroundColor(self.isTapped ? .blue : .white)
+            .gesture(tap)
+            .overlay(TextOverlay(message: text))
           
+            
+        }
+    }
+
+
+struct WheelSlider: View {
+    @State private var sliderValue: Double = 0
+
+    var body: some View {
+        VStack {
+            Text(
+                String(format: "%.0f", sliderValue)
+            )
+            Slider(value: $sliderValue, in: 100...10000, step: 100)
+            
+        }
     }
 }
-*/

@@ -10,13 +10,21 @@ import SwiftUI
 
 
 struct RobotArmController: View {
-    @State private var isDragging = false
+    @State private var isTapped = false
+    // @State private var isDragging = false
     
     let image: String
     let mqttMessage: String
     
     var body: some View {
-        let g = DragGesture(minimumDistance: -5, coordinateSpace: .local)
+        let tap = TapGesture(count: 1)
+            .onEnded({ _ in
+                self.isTapped = !self.isTapped
+                mqttClient.publish("robot/move", withString: mqttMessage)
+                print("Stopped")
+            })
+        
+       /* let g = DragGesture(minimumDistance: -5, coordinateSpace: .local)
             .onChanged({ _ in
                 self.isDragging = true
                 mqttClient.publish("robot/move", withString: mqttMessage)
@@ -27,23 +35,25 @@ struct RobotArmController: View {
                 mqttClient.publish("robot/move", withString: "stop")
                 print("Stopped")
             })
+        */
 
         return
             Image(systemName: image)
             .renderingMode(.template)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: 100, height: 100)
-            .foregroundColor(self.isDragging ? .blue : .white)
-            .gesture(g)
+            .frame(width: 70, height: 70)
+            .foregroundColor(self.isTapped ? .blue : .white)
+            .gesture(tap)
           
     }
     
 }
 
-struct RobotArmPageViewViewController: View {
+struct RobotArmDirectionViewController: View {
     @State private var isDragging = false
     
+ 
     let image: String
     let mqttMessage: String
     
@@ -57,7 +67,7 @@ struct RobotArmPageViewViewController: View {
             })
             .onEnded({ _ in
                 self.isDragging = false
-                mqttClient.publish("robot/move", withString: "stop")
+                mqttClient.publish("robot/move", withString: "no")
                 print("Stopped")
             })
 
@@ -66,12 +76,14 @@ struct RobotArmPageViewViewController: View {
             .renderingMode(.template)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: 100, height: 100)
+            .frame(width: 70, height: 70)
             .foregroundColor(self.isDragging ? .blue : .white)
             .gesture(g)
           
     }
 }
+
+
 
 
 struct RobotArmStateViewController: View {
@@ -79,12 +91,12 @@ struct RobotArmStateViewController: View {
     
     let image: String
     let mqttMessage: String
-    
+
     
     var body: some View {
         let tap = TapGesture(count: 1)
             .onEnded({ _ in
-                self.isTapped = true
+                self.isTapped = !self.isTapped
                 mqttClient.publish("robot/move", withString: "stop")
                 print("Stopped")
             })
@@ -98,5 +110,48 @@ struct RobotArmStateViewController: View {
             .foregroundColor(self.isTapped ? .blue : .white)
             .gesture(tap)
           
+    }
+}
+
+struct RobotArmSelectionViewController: View {
+    
+    @Binding private var isTappedBinding: Bool
+    @State private var isTapped = false
+    
+    let image: String
+    let mqttMessage: String
+
+    
+    var body: some View {
+        let tap = TapGesture(count: 1)
+            .onEnded({ _ in
+                self.isTapped = !self.isTapped
+                mqttClient.publish("robot/move", withString: "stop")
+                print("Stopped")
+            })
+
+        return
+            Image(systemName: image)
+            .renderingMode(.template)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 100, height: 100)
+            .foregroundColor(self.isTapped ? .blue : .white)
+            .gesture(tap)
+          
+    }
+}
+
+struct ArmSlider: View {
+    @State private var sliderValue: Double = 0
+
+    var body: some View {
+        VStack {
+            Text(
+                String(format: "%.0f", sliderValue)
+            )
+            Slider(value: $sliderValue, in: 0...220, step: 10)
+            
+        }
     }
 }
