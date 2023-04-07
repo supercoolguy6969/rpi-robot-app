@@ -76,7 +76,7 @@ struct RobotArmDirectionViewController: View {
             .renderingMode(.template)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: 70, height: 70)
+            .frame(width: 150 , height: 150)
             .foregroundColor(self.isDragging ? .blue : .white)
             .gesture(g)
           
@@ -97,8 +97,8 @@ struct RobotArmStateViewController: View {
         let tap = TapGesture(count: 1)
             .onEnded({ _ in
                 self.isTapped = !self.isTapped
-                mqttClient.publish("robot/move", withString: "stop")
-                print("Stopped")
+                mqttClient.publish("robot/move", withString: mqttMessage)
+                print("\(mqttMessage)")
             })
 
         return

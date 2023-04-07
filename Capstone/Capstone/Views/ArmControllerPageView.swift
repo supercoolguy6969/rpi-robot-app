@@ -16,65 +16,73 @@ struct ArmControllerPageView: View {
             VStack{
                 Spacer()
                 HStack {
-                    
-                    VStack {
-                        RobotArmDirectionViewController(image: "arrowtriangle.up", mqttMessage: "baseincrease")
-                        RobotArmStateViewController(image: "square", mqttMessage: "base")
+                    RobotArmStateViewController(image: "square", mqttMessage: "base")
                             .overlay(TextOverlay(message: "base"))
-                        RobotArmDirectionViewController(image: "arrowtriangle.down", mqttMessage: "basedecrease")
-                        
-                    }
-                    VStack {
-                        RobotArmDirectionViewController(image: "arrowtriangle.up", mqttMessage: "shoulderincrease")
                         RobotArmStateViewController(image: "square", mqttMessage: "shoulder")
                             .overlay(TextOverlay(message: "shoulder"))
-                        RobotArmDirectionViewController(image: "arrowtriangle.down", mqttMessage: "shoulderdecrease")
-                    }
-                    VStack {
-                        RobotArmDirectionViewController(image: "arrowtriangle.up", mqttMessage: "elbowincrease")
+        
                         RobotArmStateViewController(image: "square", mqttMessage: "elbow")
                             .overlay(TextOverlay(message: "elbow"))
-                        RobotArmDirectionViewController(image: "arrowtriangle.down", mqttMessage: "elbowdecrease")
-                    }
+                        
+    
                 }
                 Spacer()
+                
+                RobotArmDirectionViewController(image: "arrowtriangle.up", mqttMessage: "DOWN")
+                    .overlay(Image(systemName: "minus")
+                        .renderingMode(.template)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                        .rotationEffect(Angle(degrees: 90))
+                        )
+                    
+               
                 HStack {
-                    RobotArmStateViewController(image: "square", mqttMessage: "right")
+                    RobotArmStateViewController(image: "square", mqttMessage: "rightArm")
                         .overlay(TextOverlay(message: "right" ))
-                    RobotArmStateViewController(image: "square", mqttMessage: "left")
+                    RobotArmStateViewController(image: "square", mqttMessage: "leftArm")
                         .overlay(TextOverlay(message: "left" ))
-                    RobotArmStateViewController(image: "square", mqttMessage: "both")
+                    RobotArmStateViewController(image: "square", mqttMessage: "bothArm")
                         .overlay(TextOverlay(message: "both"))
                     
                 }
+                
+                RobotArmDirectionViewController(image: "arrowtriangle.down", mqttMessage: "UP")
+                    .overlay(Image(systemName: "plus")
+                    .renderingMode(.template)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30, height: 30)
+                    .rotationEffect(Angle(degrees: 90))
+                    )
                 Spacer()
                 HStack {
                     VStack {
-                        RobotArmDirectionViewController(image: "arrowtriangle.up", mqttMessage: "wrist2increase")
-                        RobotArmStateViewController(image: "square", mqttMessage: "wrist2")
-                            .overlay(TextOverlay(message: "wrist2"))
-                        RobotArmDirectionViewController(image: "arrowtriangle.down", mqttMessage: "wrist2decrease")
+                       
+                        RobotArmStateViewController(image: "square", mqttMessage: "wristRot")
+                            .overlay(TextOverlay(message: "rotation"))
+                        
                         
                     }
                     VStack{
-                        RobotArmDirectionViewController(image: "arrowtriangle.up", mqttMessage: "wrist1increase")
-                        RobotArmStateViewController(image: "square", mqttMessage: "wrist1")
-                            .overlay(TextOverlay(message: "wrist1"))
-                        RobotArmDirectionViewController(image: "arrowtriangle.down", mqttMessage: "wrist1decrease")
+                       
+                        RobotArmStateViewController(image: "square", mqttMessage: "wristRaise")
+                            .overlay(TextOverlay(message: "raise"))
+                        
                     }
                     VStack {
-                        RobotArmDirectionViewController(image: "arrowtriangle.up",   mqttMessage: "closeincrease")
+                        
                         
                         RobotArmStateViewController(image: "square", mqttMessage: "grip")
-                            .overlay(TextOverlay(message: "close"))
+                            .overlay(TextOverlay(message: "grip"))
                         
-                        RobotArmDirectionViewController(image: "arrowtriangle.down", mqttMessage: "closedecrease")
                     }
                     
                 }
                 Spacer()
-                ArmSlider()
-                Spacer()
+                
+                
             }
         }
     }

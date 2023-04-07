@@ -122,14 +122,47 @@ struct ConnectToRobot: View {
 
 struct WheelSlider: View {
     @State private var sliderValue: Double = 0
+    @State private var isEditing = false
 
     var body: some View {
         VStack {
             Text(
                 String(format: "%.0f", sliderValue)
             )
-            Slider(value: $sliderValue, in: 100...10000, step: 100)
-            
+            Slider(value: $sliderValue, in: 0...20000, step: 100,
+                   onEditingChanged: { editing in
+                isEditing = editing
+                
+                if sliderValue == 100
+                {
+                    mqttClient.publish("robot/move", withString: "100")
+                    print("100 steps")
+                }
+                else if sliderValue == 1000
+                {
+                    mqttClient.publish("robot/move", withString: "1000")
+                    print("1000 steps")
+                }
+                else if sliderValue == 5000
+                {
+                    mqttClient.publish("robot/move", withString: "5000")
+                    print("5000 steps")
+                }
+                
+                else if sliderValue == 10000
+                {
+                    mqttClient.publish("robot/move", withString: "100000")
+                    print("10000 steps")
+                }
+                
+                else if sliderValue == 20000
+                {
+                    mqttClient.publish("robot/move", withString: "200000")
+                    print("20000 steps")
+                }
+                }
+            )
         }
     }
+    
 }
