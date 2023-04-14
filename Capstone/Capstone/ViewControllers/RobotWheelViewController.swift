@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RobotWheelViewController: View {
-    @State private var isDragging = false
+    @State private var isTapped = false
     
     let image: String
     let mqttMessage: String
@@ -16,6 +16,13 @@ struct RobotWheelViewController: View {
     
     var body: some View {
         
+        let tap = TapGesture()
+            .onEnded({ _ in
+                self.isTapped = !self.isTapped
+                mqttClient.publish("robot/move", withString: mqttMessage)
+                print("Stopped")
+            })
+        /*
         let g = DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged({ _ in
                 self.isDragging = true
@@ -27,15 +34,15 @@ struct RobotWheelViewController: View {
                 mqttClient.publish("robot/move", withString: "stop")
                 print("Stopped")
             })
-
+        */
         return
             Image(systemName: image)
             .renderingMode(.template)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 100, height: 100)
-            .foregroundColor(self.isDragging ? .blue : .white)
-            .gesture(g)
+            .foregroundColor(self.isTapped ? .blue : .white)
+            .gesture(tap)
           
     }
 }
