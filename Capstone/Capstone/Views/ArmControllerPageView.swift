@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ArmControllerPageView: View {
     
-    @State var armSelection: Bool = false
+    
+    
     
     var body: some View {
         ZStack {
@@ -17,7 +18,7 @@ struct ArmControllerPageView: View {
                 Spacer()
                 HStack {
                     RobotArmStateViewController(image: "square", mqttMessage: "base")
-                            .overlay(TextOverlay(message: "base"))
+                            .overlay(TextOverlay(message: "base")) 
                         RobotArmStateViewController(image: "square", mqttMessage: "shoulder")
                             .overlay(TextOverlay(message: "shoulder"))
         
@@ -39,12 +40,10 @@ struct ArmControllerPageView: View {
                     
                
                 HStack {
-                    RobotArmStateViewController(image: "square", mqttMessage: "rightArm")
+                    RobotArmSelectionViewController(image: "square", mqttMessage: "rightArm")
                         .overlay(TextOverlay(message: "right" ))
                     RobotArmStateViewController(image: "square", mqttMessage: "leftArm")
                         .overlay(TextOverlay(message: "left" ))
-                    RobotArmStateViewController(image: "square", mqttMessage: "bothArm")
-                        .overlay(TextOverlay(message: "both"))
                     
                 }
                 

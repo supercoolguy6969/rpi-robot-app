@@ -21,6 +21,7 @@ struct RobotWheelViewController: View {
                 self.isTapped = !self.isTapped
                 mqttClient.publish("robot/move", withString: mqttMessage)
                 print("Stopped")
+                
             })
         /*
         let g = DragGesture(minimumDistance: 0, coordinateSpace: .local)

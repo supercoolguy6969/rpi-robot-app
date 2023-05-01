@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-
 struct RobotArmController: View {
     @State private var isTapped = false
     // @State private var isDragging = false
@@ -79,7 +78,7 @@ struct RobotArmDirectionViewController: View {
             .frame(width: 150 , height: 150)
             .foregroundColor(self.isDragging ? .blue : .white)
             .gesture(g)
-          
+        
     }
 }
 
@@ -87,6 +86,7 @@ struct RobotArmDirectionViewController: View {
 
 
 struct RobotArmStateViewController: View {
+    
     @State private var isTapped = false
     
     let image: String
@@ -115,7 +115,7 @@ struct RobotArmStateViewController: View {
 
 struct RobotArmSelectionViewController: View {
     
-    @Binding private var isTappedBinding: Bool
+    
     @State private var isTapped = false
     
     let image: String
@@ -126,9 +126,10 @@ struct RobotArmSelectionViewController: View {
         let tap = TapGesture(count: 1)
             .onEnded({ _ in
                 self.isTapped = !self.isTapped
-                mqttClient.publish("robot/move", withString: "stop")
+                mqttClient.publish("robot/move", withString: mqttMessage)
                 print("Stopped")
             })
+    
 
         return
             Image(systemName: image)
