@@ -55,7 +55,7 @@ struct Main: View {
                     }
                     HStack {
                         Function(image: "circle", mqttMessage: "CCW", text: "CCW")
-                        Function(image: "circle", mqttMessage: "stop", text: "stop")
+                        Function(image: "circle", mqttMessage: "stop", text: "stop it")
                     }
                     
                     HStack {
